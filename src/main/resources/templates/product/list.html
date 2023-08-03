@@ -1,9 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
+<html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/index :: dynamic(~{::main})}">
-	<body>
-		<main>
-			Product list
-		</main>
-	</body>
+<body>
+	<main>
+		<section class="py-5">
+			<div class="container px-4 px-lg-5 mt-5">
+				<div
+					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					<div th:each="p:${products}">
+						<div class="col mb-5">
+							<div class="card h-100" style="min-height: 270px">
+								<!-- Product image-->
+								<a th:href="@{|/product/detail/${p.id}|}"> <img
+									class="card-img-top" th:src="@{|/assets/images/${p.image}|}"
+									style="height: 80px;" />
+								</a>
+								<!-- Product details-->
+								<div class="card-body p-4">
+									<div class="text-center">
+										<!-- Product name-->
+										<h6 class="fw-bolder" th:text="${p.name}"></h6>
+										<!-- Product price-->
+										[[${p.price}]]
+									</div>
+								</div>
+								<!-- Product actions-->
+								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto" href="#">View
+											options</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
 </html>

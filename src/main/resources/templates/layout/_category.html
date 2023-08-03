@@ -3,11 +3,8 @@
 		<div class="card-header">Category</div>
 		<div class="card-body">
 		   	<ul class="list-group">
-		   		<a href="/product/list?cid=1" class="list-group-item">Category 1</a>
-		   		<a href="/product/list?cid=2" class="list-group-item">Category 2</a>
-		   		<a href="/product/list?cid=3" class="list-group-item">Category 3</a>
-		   		<a href="/product/list?cid=4" class="list-group-item">Category 4</a>
-		   		<a href="/product/list?cid=5" class="list-group-item">Category 5</a>
+		   		<a th:each="c:${categories}" th:href="|/product/list?cid=${c.id}|"
+		   		 class="list-group-item" th:text="${c.name}"></a>
 			</ul>
 		</div>
 	</div>

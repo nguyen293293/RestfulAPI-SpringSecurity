@@ -1,9 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
+<html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/index :: dynamic(~{::main})}">
-	<body>
-		<main>
-			Product detail
-		</main>
-	</body>
+<body>
+	<main>
+		<div class="card h-100 row" style="min-height: 400px">
+			<!-- Product image-->
+			<img class="card-img-top" th:src="@{|/assets/images/${p.image}|}"
+				style="height: 300px;" />
+			<!-- Product details-->
+			<div class="card-body p-4">
+				<div class="text-center">
+					<!-- Product name-->
+					<h3 class="fw-bolder" th:text="${p.name}"></h3>
+					<h6 class="fw-bolder" th:text="${p.category.name}"></h6>
+					<!-- Product price-->
+					<h4>[[${p.price}]] $</h4>
+				</div>
+			</div>
+			<!-- Product actions-->
+			<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+				<div class="text-center">
+					<a class="btn btn-outline-dark mt-auto" href="#">Add</a>
+				</div>
+			</div>
+		</div>
+		<h3>Sản phẩm cùng loại</h3>
+		<div class="row">
+			<div class="col-4 mb-5" th:each="pro:${p.category.products}")>
+				<div class="card h-100" style="min-height: 270px">
+					<a th:href="@{|/product/detail/${pro.id}|}"> <img
+						class="card-img-top" th:src="@{|/assets/images/${pro.image}|}"
+						style="height: 80px;" />
+					</a>
+					<div class="card-body p-4">
+						<div class="text-center">
+							<h6 class="fw-bolder" th:text="${pro.name}"></h6>
+							[[${pro.price}]]
+						</div>
+					</div>
+					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+						<div class="text-center">
+							<a class="btn btn-outline-dark mt-auto" href="#">View options</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
 </html>
